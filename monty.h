@@ -1,6 +1,12 @@
 #ifndef MONTY_H
 #define MONTY_H
 
+#include <sys/types.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <string.h>
+#include <ctype.h>
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -34,7 +40,26 @@ typedef struct instruction_s
     void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-void f_push(stack_t **stack, int, unsigned int);
+void f_push(stack_t **stack, int);
 void f_pall(stack_t **stack, unsigned int);
+void free_stack(stack_t *head);
+
+
+/**
+ * struct bus_s - variables -args, file, line content
+ * @arg: value
+ * @file: pointer to monty file
+ * @content: line content
+ * @lifi: flag change stack <-> queue
+ * Description: carries values through the program
+ */
+typedef struct bus_s
+{
+	char *arg;
+	FILE *file;
+	char *content;
+	int lifi;
+}  bus_t;
+extern bus_t bus;
 
 #endif

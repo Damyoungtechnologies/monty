@@ -1,62 +1,45 @@
 #include "monty.h"
-
+#include <stdio.h>
 /**
- * execute_opcode - executes Monty bytecode opcodes
- * @opcode: the opcode
- * @stack: pointer to the stack head
- * @line_number: line number
- * Return: no return
+ * add_node - Adds a new node to the stack.
+ * @stack: Double pointer to the head of the stack.
+ * @n: Integer value to be stored in the new node.
+ *
+ * Return: Address of the new node.
  */
-void execute_opcode(char *opcode, stack_t **stack, unsigned int line_number)
+stack_t *add_node(stack_t **stack, int n)
 {
-	if (strcmp(opcode, "push") == 0)
+	stack_t *new_node = malloc(sizeof(stack_t));
+
+	if (new_node == NULL)
 	{
-	}
-	else if (strcmp(opcode, "pall") == 0)
-	{
-		f_pall(stack, line_number);
-	}
-	else
-	{
-		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
-		fclose(bus.file);
-		free(bus.content);
-		free_stack(*stack);
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
+	new_node->n = n;
+	new_node->prev = NULL;
+	new_node->next = *stack;
+	if (*stack != NULL)
+		(*stack)->prev = new_node;
+	return (new_node);
 }
 
 /**
- * main - entry point for Monty interpreter
- * @argc: argument count
- * @argv: argument vector
- * Return: EXIT_SUCCESS on success, EXIT_FAILURE on failure
+ * push - Implements the push opcode.
+ * @stack: Double pointer to the head of the stack.
+ * @line_number: Line number in the file.
  */
-int main(int argc, char *argv[])
+void push(stack_t **stack, unsigned int line_number)
 {
-	FILE *file;
-	char *line = NULL;
-	size_t len = 0;
-	stack_t *stack = NULL;
-	unsigned int line_number = 0;
+    /* Implementation of push */
+}
 
-	if (argc != 2)
-	{
-		fprintf(stderr, "USAGE: monty file\n");
-		exit(EXIT_FAILURE);
-	}
-	file = fopen(argv[1], "r");
-	if (!file)
-	{
-		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		exit(EXIT_FAILURE);
-	}
-	while (getline(&line, &len, file) != -1)
-	{
-		line_number++;
-	}
-	fclose(file);
-	free(line);
-	free_stack(stack);
-	return (EXIT_SUCCESS);
+/**
+ * pall - Implements the pall opcode.
+ * @stack: Double pointer to the head of the stack.
+ * @line_number: Line number in the file.
+ */
+void pall(stack_t **stack, unsigned int line_number)
+{
+    /* Implementation of pall */
 }
