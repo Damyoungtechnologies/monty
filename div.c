@@ -1,15 +1,19 @@
 #include "monty.h"
 
 /**
- * f_div - Divides the second top elements of the by the element
- * @head: Pointer targetted to get the Stack head
- * @counter: Seeming like pointet to Line number
- * Return: NULL value
+ * f_div - Divides the second top element of the stack by the top element.
+ * @head: Pointer to the stack head
+ * @counter: Line number
+ * Return: No return
  *
  * Description:
  * This function divides the second top element of the stack.
- * If the stack contains fewer than two elements, it print
- * If the top element is zero, it prints a division by zero
+ * If the stack contains fewer than two elements, it prints
+ * the error message L<line_number>: can't div, stack too short,
+ * followed by a new line, and exits with the status EXIT_FAILURE.
+ * If the top element is zero, it prints the error message
+ * L<line_number>: division by zero, followed by a new line,
+ * and exits with the status EXIT_FAILURE.
  */
 void f_div(stack_t **head, unsigned int counter)
 {
@@ -26,7 +30,7 @@ void f_div(stack_t **head, unsigned int counter)
 
 	if (h->n == 0)
 	{
-		fprintf(stderr, "L%d: Error - division by zero\n", counter);
+		fprintf(stderr, "L%d: division by zero\n", counter);
 		fclose(bus.file);
 		free(bus.content);
 		free_stack(*head);
