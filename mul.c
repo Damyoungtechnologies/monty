@@ -1,9 +1,21 @@
 #include "monty.h"
 
 /**
- * f_mul - The function multiplies the last two elements in a given stack.
- * @head: Pointer to the Stack or queue head
- * @counter: Pointing only to the line number
+ * f_mul - Multiplies the second top element of the stack with the top element.
+ * @head: Pointer to the stack or queue head
+ * @counter: Line number
+ * Return: No return
+ *
+ * Description:
+ * The function multiplies the second top element of the stack
+ * with the top element.
+ * If the stack contains fewer than two elements, it prints
+ * the error message L<line_number>: can't mul, stack too short,
+ * followed by a new line, and exits with the status EXIT_FAILURE.
+ * The result is stored in the second top element of the stack,
+ * and the top element is removed, so that at the end:
+ * - The top element of the stack contains the result
+ * - The stack is one element shorter
  */
 void f_mul(stack_t **head, unsigned int counter)
 {
@@ -25,9 +37,9 @@ void f_mul(stack_t **head, unsigned int counter)
 		exit(EXIT_FAILURE);
 	}
 
+	result = (*head)->next->n * (*head)->n;
+	(*head)->next->n = result;
 	current = *head;
-	result = current->next->n * current->n;
-	current->next->n = result;
-	*head = current->next;
+	*head = (*head)->next;
 	free(current);
 }
