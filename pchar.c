@@ -1,9 +1,18 @@
 #include "monty.h"
 
 /**
- * f_pchar - Top character of the stack, followed by a newline.
- * @head: Pointer to the Stack head
- * @counter: target the number line
+ * f_pchar - Characters at the top for print
+ * @head: Pointer to the stack head
+ * @counter: Line number
+ * Return: No return
+ *
+ * Description:
+ * The opcode pchar prints the char at the top
+ * The integer stored at the top of the stack is treated as the ASCII value
+ * of the character to be printed.
+ * If the value is not in the ASCII table (man ascii), it prints
+ * the error message L<line_number>: can't pchar, value out of range,
+ * followed by a new line, and exits with the status EXIT_FAILURE.
  */
 void f_pchar(stack_t **head, unsigned int counter)
 {
